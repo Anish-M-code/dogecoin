@@ -44,11 +44,13 @@ public:
     QWidget *setupTabChain(QWidget *prev);
 
     void setAddress(const QString &address);
+    void setAmount(const CAmount &amount);
     void pasteEntry(const SendCoinsRecipient &rv);
     bool handlePaymentRequest(const SendCoinsRecipient &recipient);
 
 public Q_SLOTS:
     void clear();
+    void checkSubtractFeeFromAmount();
     void reject();
     void accept();
     SendCoinsEntry *addEntry();
@@ -76,6 +78,7 @@ private Q_SLOTS:
     void on_buttonChooseFee_clicked();
     void on_buttonMinimizeFee_clicked();
     void removeEntry(SendCoinsEntry* entry);
+    void useAvailableBalanceClicked();
     void updateDisplayUnit();
     void coinControlFeatureChanged(bool);
     void coinControlButtonClicked();
@@ -98,6 +101,7 @@ private Q_SLOTS:
 Q_SIGNALS:
     // Fired when a message should be reported to the user
     void message(const QString &title, const QString &message, unsigned int style);
+    void useAvailableBalance(SendCoinsEntry* entry);
 };
 
 
